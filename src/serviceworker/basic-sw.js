@@ -1,3 +1,4 @@
+// examples from https://app.pluralsight.com/library/courses/building-offline-web-apps-service-worker/table-of-contents
 const swVersion = 1;
 self.addEventListener('install', function(event) { 
   console.log('SW Installed at ', new Date().toLocaleDateString(), ' version ', swVersion);
@@ -9,14 +10,14 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event){
 
-  if(!navigator.onLine){
-    // know I'm offline
-    event.respondWith(new Response('<h1>offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
-    return;  
-  }
+  // if(!navigator.onLine){
+  //   // know I'm offline
+  //   event.respondWith(new Response('<h1>offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
+  //   return;  
+  // }
 
   console.log(event.request.url);
 
-// pass through
+  // pass through
   event.respondWith(fetch(event.request));
 });
