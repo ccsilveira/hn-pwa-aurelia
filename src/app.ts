@@ -8,17 +8,14 @@ export class App {
   }
 
   private registerServiceWorker(){
-debugger;
     if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/src/build/sw.js').then(function(registration) {
+      navigator.serviceWorker.register('/src/build/sw.js').then((registration)  =>{
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
+      }, (err) => {
         // registration failed :(
         console.log('ServiceWorker registration failed: ', err);
       });
-    });
   }
   }
 }

@@ -4,7 +4,17 @@ define('app',["require", "exports"], function (require, exports) {
     var App = (function () {
         function App() {
             this.message = 'Hello World!';
+            this.registerServiceWorker();
         }
+        App.prototype.registerServiceWorker = function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/src/build/sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            }
+        };
         return App;
     }());
     exports.App = App;

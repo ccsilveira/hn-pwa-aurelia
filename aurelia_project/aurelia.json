@@ -39,6 +39,7 @@
     "source": "test/unit/**/*.ts"
   },
   "paths": {
+    "content": "content",
     "root": "src",
     "resources": "src/resources",
     "elements": "src/resources/elements",
