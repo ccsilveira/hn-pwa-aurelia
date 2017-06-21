@@ -7,10 +7,10 @@ export class App {
   }
   configureRouter(config: RouterConfiguration, router: Router) {
     this.router = router;
-    config.title = 'Aurelia';
+    config.title = 'Hacker News in Aurelia';
     config.map([
-      { route: ['', 'topnews'],    name: 'topnews',   moduleId: 'resources/elements/topnews',  nav: true },
-      { route: 'about',            name: 'about',     moduleId: 'resources/elements/about',   nav: true }
+      { route: ['', 'topnews'],    name: 'topnews',   moduleId: 'resources/elements/topnews',  nav: true, title: 'top' },
+      { route: 'about',            name: 'about',     moduleId: 'resources/elements/about',   nav: true, title: 'about' }
     ]);
   }
 

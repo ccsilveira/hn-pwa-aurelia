@@ -1,11 +1,8 @@
 <template>
-  <nav>
-    <ul>
-      <li><a href="topnews">Top</a></li>
-      <li><a href="about">About</a></li>
-    </ul>
-    
-  </nav>
-  <h1>${message}</h1>
-  <router-view></router-view>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <require from="resources/elements/nav-bar.html"></require>
+  <nav-bar router.bind="router"></nav-bar>
+  <div style="margin: 8rem 2rem;">
+    <router-view></router-view>
+  </div>
 </template>
