@@ -9,12 +9,12 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event){
-
-  // if(!navigator.onLine){
-  //   // know I'm offline
-  //   event.respondWith(new Response('<h1>offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
-  //   return;  
-  // }
+debugger;
+  if(!navigator.onLine){
+    // know I'm offline
+    event.respondWith(new Response('<h1>offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
+    return;  
+  }
 
   console.log(event.request.url);
 
