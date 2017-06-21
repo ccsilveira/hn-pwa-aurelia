@@ -18,7 +18,7 @@ let serve = gulp.series(
   build,
   done => {
     browserSync({
-       https: true,
+     //  https: true,
       online: false,
       open: false,
       port: 9000,
