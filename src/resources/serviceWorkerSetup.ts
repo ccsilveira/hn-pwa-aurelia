@@ -2,7 +2,7 @@ export class ServiceWorkerSetup{
 
   public registerServiceWorker() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/src/serviceworker/basic-sw.js').then((registration) => {
+      navigator.serviceWorker.register('basic-sw.js').then((registration) => {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
       }, (err) => {
