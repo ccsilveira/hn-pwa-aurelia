@@ -1,4 +1,5 @@
 // examples from https://app.pluralsight.com/library/courses/building-offline-web-apps-service-worker/table-of-contents
+// event.waitUntil from https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
 var version = 1;
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
