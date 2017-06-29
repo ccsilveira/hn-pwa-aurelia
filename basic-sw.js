@@ -14,13 +14,13 @@ self.addEventListener('install', function(event) {
 
   // self.skipWaiting();
 
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-  );
+  // event.waitUntil(
+  //   caches.open(CACHE_NAME)
+  //     .then(function(cache) {
+  //       console.log('Opened cache');
+  //       return cache.addAll(urlsToCache);
+  //     })
+  // );
 });
 
 self.addEventListener('activate', function(event) { 
@@ -29,23 +29,23 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event){
 console.log('fetching ' + event.request.url);
-event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        console.log('fetch ', response);
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
-  // if(!navigator.onLine){
-  //   // know I'm offline
-  //   event.respondWith(new Response('<h1>offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
-  //   return;  
-  // }
+// event.respondWith(
+//     caches.match(event.request)
+//       .then(function(response) {
+//         // Cache hit - return response
+//         console.log('fetch ', response);
+//         if (response) {
+//           return response;
+//         }
+//         return fetch(event.request);
+//       }
+//     )
+//   );
+  if(!navigator.onLine){
+    // most reliable way to know if I'm offline is !navigator.onLine
+    event.respondWith(new Response('<h1>The site is offline</h1>', {headers: { 'Content-Type': 'text/html'}}));  
+    return;  
+  }
 
   // pass through
   // event.respondWith(fetch(event.request));
