@@ -1,10 +1,19 @@
-define('app',["require", "exports"], function (require, exports) {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('app',["require", "exports", "./resources/serviceWorkerSetup", "aurelia-framework"], function (require, exports, serviceWorkerSetup_1, aurelia_framework_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var App = (function () {
-        function App() {
+        function App(serviceWorkerSetup) {
             this.message = 'Hello World!';
-            this.registerServiceWorker();
+            serviceWorkerSetup.registerServiceWorker();
         }
         App.prototype.configureRouter = function (config, router) {
             this.router = router;
@@ -14,17 +23,12 @@ define('app',["require", "exports"], function (require, exports) {
                 { route: 'about', name: 'about', moduleId: 'resources/elements/about', nav: true, title: 'about' }
             ]);
         };
-        App.prototype.registerServiceWorker = function () {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/src/serviceworker/basic-sw.js').then(function (registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function (err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            }
-        };
         return App;
     }());
+    App = __decorate([
+        aurelia_framework_1.inject(serviceWorkerSetup_1.ServiceWorkerSetup),
+        __metadata("design:paramtypes", [serviceWorkerSetup_1.ServiceWorkerSetup])
+    ], App);
     exports.App = App;
 });
 
@@ -66,6 +70,26 @@ define('resources/index',["require", "exports"], function (require, exports) {
     function configure(config) {
     }
     exports.configure = configure;
+});
+
+define('resources/serviceWorkerSetup',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var ServiceWorkerSetup = (function () {
+        function ServiceWorkerSetup() {
+        }
+        ServiceWorkerSetup.prototype.registerServiceWorker = function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/src/serviceworker/basic-sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            }
+        };
+        return ServiceWorkerSetup;
+    }());
+    exports.ServiceWorkerSetup = ServiceWorkerSetup;
 });
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

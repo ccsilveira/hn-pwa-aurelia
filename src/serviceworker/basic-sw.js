@@ -1,11 +1,11 @@
 // examples from https://app.pluralsight.com/library/courses/building-offline-web-apps-service-worker/table-of-contents
 const swVersion = 1;
 self.addEventListener('install', function(event) { 
-  console.log('SW Installed at ', new Date().toLocaleDateString(), ' version ', swVersion);
+  console.log('ServiceWorker Installed at ', new Date().toLocaleDateString(), ' version ', swVersion);
 });
 
 self.addEventListener('activate', function(event) { 
-  console.log('SW Activated at ', new Date().toLocaleDateString());
+  console.log('ServiceWorker Activated at ', new Date().toLocaleDateString());
 });
 
 self.addEventListener('fetch', function(event){
