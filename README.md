@@ -1,6 +1,6 @@
 # Purpose
 
-Create a [Hacker News PWA](http://hwpwa.com) example in Aurelia and learn how to create a PWA.
+Create a [Hacker News PWA](https://hnpwa.com) example in Aurelia and learn how to create a PWA.
 
 ## Get running
 
