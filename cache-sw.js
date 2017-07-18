@@ -59,15 +59,15 @@ self.addEventListener('fetch', function (event) {
     // https://www.youtube.com/watch?v=MiLAE6HMr10 - Steve Sanderson at NDC 2017 15 minutes
     // serve cache if slow
     event.respondWith(
-        fetch(event.request)
-            .then(networkRespose => {
+        fetch(event.request)            
+            .then(networkResponse => {
                 // update if fast enough
                 console.log(`Worker: Updating cached data for ${event.request.url}`);
-                var responseClone = networkRespose.clone();
-                caches.open(CACHE_NAME).then(cache => cache.push(event.request));
-                return networkRespose
+                var responseClone = networkResponse.clone();
+                caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+                return networkResponse;
             })
-            .timeout(1000)
+            //.timeout(1000)
             .catch(_ => {
                 console.log(`Worker: service ${event.request.url} from CACHE`);
                 return caches.match(event.request);
